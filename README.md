@@ -1,6 +1,6 @@
 # 🧙‍♂️ Druid
 
-A **blazingly fast**, **collision-resistant**, **sortable**, and **unique identifier** generator written in Rust.
+A **blazingly fast**, **collision-resistant**, **sortable**, unique identifier generator written in Rust.
 
 ## 🔧 How It Works
 
