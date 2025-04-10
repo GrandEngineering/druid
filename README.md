@@ -20,4 +20,4 @@ While there is a theoretical chance of a collision, the total number of possible
 UUIDv4
 CUIDv2
 Intel Core i5-10400F
-To get a 1% chance of colision you would need to speed up Druid 6.09x10^31 times.
+To get a 1% chance of colision you would need to speed up Druid 6.09x10^31 times(more than the grains of sand in Planet Earth).
