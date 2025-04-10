@@ -18,6 +18,6 @@ While there is a theoretical chance of a collision, the total number of possible
 | **Std Dev**        | 784.44 ps       | 52.284 ns       | 771.28 ps         |
 
 
-** Notes: **
+**Notes:**
 UUIDv4
 CUIDv2
