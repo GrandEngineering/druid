@@ -8,8 +8,6 @@ And the last byte is for the version
 ## Odds of collision
 While there is a theoretical chance of a collision, the total number of possible IDs in a second is on the order of 2^184. Taking this into account, you would need to generate approximately 5.55×10^26 IDs in a single second to have a 1% chance of a collision.
 ## Performance
-### Performance Comparison
-### Performance Comparison
 
 | Metric             | **[DRUID]()**       | **[CUID](https://github.com/mplanchard/cuid-rust)**        | **[UUID](https://github.com/uuid-rs/uuid)**          |
 |--------------------|-----------------|-----------------|-------------------|
@@ -21,3 +19,4 @@ While there is a theoretical chance of a collision, the total number of possible
 **Notes:**
 UUIDv4
 CUIDv2
+Intel Core i5-10400F
