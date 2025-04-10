@@ -16,6 +16,8 @@ While there is a theoretical chance of a collision, the total number of possible
 | **Mean**           | 45.789 ns       |  	3.4375 µs    | 46.160 ns         |
 | **Median**         | 45.684 ns       | 3.4310 µs       | 46.046 ns         |
 | **Std Dev**        | 784.44 ps       | 52.284 ns       | 771.28 ps         |
+
+
 ** Notes: **
 UUIDv4
 CUIDv2
