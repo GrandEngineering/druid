@@ -1,4 +1,4 @@
-# Druid
+# 🧙‍♂️ Druid
 
 A **blazingly fast**, **collision-resistant**, **sortable**, and **unique identifier** generator written in Rust.
 
