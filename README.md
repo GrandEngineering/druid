@@ -12,7 +12,7 @@ Druid IDs are 32 bytes in total, composed of four parts:
 
 ## 🎯 Collision Probability
 
-While a theoretical chance of collision exists, it's *astronomically* low. Druid can produce around **2¹⁸⁴ unique IDs per second**.
+While a theoretical chance of collision exists, it's *astronomically* low. Druid has around **2¹⁸⁴ unique IDs** for each second.
 
 To put that into perspective:
 
