@@ -2,10 +2,13 @@ use criterion::{Criterion, PlotConfiguration, criterion_group, criterion_main};
 fn gen_id() {
     druid::Druid::default();
 }
-
+fn gen_idv7() {
+    druid::DruidV7::default();
+}
 fn criterion_benchmark(c: &mut Criterion) {
     let mut group = c.benchmark_group("ID");
     group.bench_function("Druid", |b| b.iter(gen_id));
+    group.bench_function("Druidv7", |b| b.iter(gen_idv7));
     group.bench_function("CUID", |b| b.iter(cuid::cuid2));
     group.bench_function("UUID", |b| b.iter(uuid::Uuid::new_v4));
     group.finish();
