@@ -32,6 +32,7 @@ That’s more IDs than grains of sand on Earth.
 
 - UUIDv4
 - CUIDv2
+- Druid's UUIDv7
 - Intel Core i5-10400F
 
 > To reach a 1% chance of collision, Druid would need to be **6.09 × 10³¹ times faster**—more than the number of grains of sand on Earth.
