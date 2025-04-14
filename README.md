@@ -21,11 +21,11 @@ To put that into perspective:
 That’s more IDs than grains of sand on Earth.
 ## ⚡ Performance
 
-| Metric             | **[DRUID]()**       | **[CUID](https://github.com/mplanchard/cuid-rust)**        | **[UUID](https://github.com/uuid-rs/uuid)**          |
-|--------------------|-----------------|-----------------|-------------------|
-| **Mean**           | 45.789 ns       |  	3.4375 µs    | 46.160 ns         |
-| **Median**         | 45.684 ns       | 3.4310 µs       | 46.046 ns         |
-| **Std Dev**        | 784.44 ps       | 52.284 ns       | 771.28 ps         |
+| Metric             | **[DRUID]()**|  **[DRUID v7](https://www.rfc-editor.org/rfc/rfc9562.html#name-uuid-version-7)**       | **[CUID](https://github.com/mplanchard/cuid-rust)**        | **[UUIDv4](https://github.com/uuid-rs/uuid)**          |
+|--------------------|-----------|-----------|-----------------|-------------------|
+| **Mean**           | 45.789 ns | 42.366 ns | 3.4375 µs       | 46.160 ns         |
+| **Median**         | 45.684 ns | 42.239 ns | 3.4310 µs       | 46.046 ns         |
+| **Std Dev**        | 784.44 ps | 691.97 ps | 52.284 ns       | 771.28 ps         |
 
 
 **Benchmarked using:**
