@@ -358,6 +358,7 @@ dependencies = [
  "cuid2-rs",
  "rand 0.9.0",
  "rand_chacha 0.9.0",
+ "rayon",
  "uuid",
 ]
 
