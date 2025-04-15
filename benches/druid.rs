@@ -21,7 +21,7 @@ fn gen_uuidv4() {
 }
 fn criterion_benchmark(c: &mut Criterion) {
     let mut group = c.benchmark_group("ID");
-    group.nresamples(1_000_000);
+    group.sample_size(1_000_000);
     group.bench_function("Druidx10k", |b| b.iter(gen_id));
     group.bench_function("Druidv7x10k", |b| b.iter(gen_idv7));
     group.bench_function("CUIDx10k", |b| b.iter(cuid));
