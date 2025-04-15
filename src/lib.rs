@@ -17,8 +17,8 @@ impl Default for Druid {
         rand::rng().fill_bytes(&mut bytes);
 
         let mut id = [0u8; 32];
-        id[0..8].clone_from_slice(&timestamp.to_be_bytes());
-        id[8..31].clone_from_slice(&bytes);
+        id[0..8].copy_from_slice(&timestamp.to_be_bytes());
+        id[8..31].copy_from_slice(&bytes);
         id[31] = VERSION; //version byte
         Self { id }
     }
