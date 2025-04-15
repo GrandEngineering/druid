@@ -2,29 +2,36 @@ use criterion::{Criterion, PlotConfiguration, criterion_group, criterion_main};
 use rayon::prelude::*;
 use std::time::Duration;
 fn gen_id() {
-    (0..10000).collect::<Vec<u64>>().par_iter().for_each(|_| {
-        druid::Druid::default();
+    (0..10).collect::<Vec<u64>>().par_iter().for_each(|_| {
+        for i in 0..100 {
+            druid::Druid::default();
+        }
     });
 }
 fn gen_idv7() {
-    (0..10000).collect::<Vec<u64>>().par_iter().for_each(|_| {
-        druid::DruidV7::default();
+    (0..10).collect::<Vec<u64>>().par_iter().for_each(|_| {
+        for i in 0..100 {
+            druid::DruidV7::default();
+        }
     });
 }
 fn cuid() {
-    (0..10000).collect::<Vec<u64>>().par_iter().for_each(|_| {
-        cuid::cuid2();
+    (0..10).collect::<Vec<u64>>().par_iter().for_each(|_| {
+        for i in 0..100 {
+            cuid::cuid2();
+        }
     });
 }
 fn gen_uuidv4() {
-    (0..10000).collect::<Vec<u64>>().par_iter().for_each(|_| {
-        uuid::Uuid::new_v4();
+    (0..10).collect::<Vec<u64>>().par_iter().for_each(|_| {
+        for i in 0..100 {
+            uuid::Uuid::new_v4();
+        }
     });
 }
 fn criterion_benchmark(c: &mut Criterion) {
     let mut group = c.benchmark_group("ID");
-    group.sample_size(100_000);
-    group.measurement_time(Duration::from_secs(60));
+    group.sample_size(10_000);
     group.bench_function("Druidx10k", |b| b.iter(gen_id));
     group.bench_function("Druidv7x10k", |b| b.iter(gen_idv7));
     group.bench_function("CUIDx10k", |b| b.iter(cuid));
