@@ -18,7 +18,7 @@ impl Default for Druid {
 
         let mut id = [0u8; 40];
         id[0..16].copy_from_slice(&timestamp.to_be_bytes());
-        id[16..31].copy_from_slice(&bytes);
+        id[16..39].copy_from_slice(&bytes);
         id[31] = VERSION; //version byte
         Self { id }
     }
