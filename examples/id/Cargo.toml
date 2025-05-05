@@ -1,0 +1,8 @@
+[package]
+name = "id"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+druid = { path = "../../" }
+rand = "0.9.1"

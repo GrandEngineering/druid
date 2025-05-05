@@ -4,19 +4,19 @@ A **blazingly fast**, **collision-resistant**, **sortable**, unique identifier g
 
 ## 🔧 How It Works
 
-Druid IDs are 32 bytes in total, composed of four parts:
+Druid IDs are 40 bytes in total, composed of four parts:
 
-1. **Timestamp** (8 bytes): Stored in big-endian format for natural sortability.
+1. **Timestamp** (16 bytes): Stored in big-endian format for natural sortability.
 2. **Randomness** (23 bytes): Generated using a cryptographically secure pseudo-random number generator (CSPRNG).
 3. **Version** (1 byte): Reserved for versioning and future compatibility.
 
 ## 🎯 Collision Probability
 
-While a theoretical chance of collision exists, it's *astronomically* low. Druid has around **2¹⁸⁴ unique IDs** for each second.
+While a theoretical chance of collision exists, it's *astronomically* low. Druid has around **2¹⁸⁴ unique IDs** for each nano-second.
 
 To put that into perspective:
 
-> You would need to generate approximately **5.55 × 10²⁶ IDs per second** to reach a **1% chance of collision**.
+> You would need to generate approximately **5.55 × 10²⁶ IDs per nanosecond** to reach a **1% chance of collision**.
 
 That’s more IDs than grains of sand on Earth.
 ## ⚡ Performance
@@ -34,8 +34,6 @@ That’s more IDs than grains of sand on Earth.
 - CUIDv2
 - Druid's UUIDv7
 - Intel Core i5-10400F
-
-> To reach a 1% chance of collision, Druid would need to be **6.09 × 10³¹ times faster**—more than the number of grains of sand on Earth.
 
 ---
 
