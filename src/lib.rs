@@ -4,7 +4,7 @@ use chrono::{DateTime, Utc};
 use rand::prelude::*;
 const VERSION: u8 = 0;
 pub struct Druid {
-    pub id: [u8; 32],
+    pub id: [u8; 40],
 }
 impl Default for Druid {
     fn default() -> Self {
