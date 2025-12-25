@@ -1,7 +1,7 @@
-use std::time::{Instant, SystemTime, UNIX_EPOCH};
-
 use chrono::{DateTime, Utc};
+mod compute;
 use rand::prelude::*;
+use std::time::{Instant, SystemTime, UNIX_EPOCH};
 const VERSION: u8 = 0;
 pub struct Druid {
     pub id: [u8; 40],
@@ -19,7 +19,7 @@ impl Default for Druid {
         let mut id = [0u8; 40];
         id[0..16].copy_from_slice(&timestamp.to_be_bytes());
         id[16..39].copy_from_slice(&bytes);
-        id[31] = VERSION; //version byte
+        id[39] = VERSION; //version byte
         Self { id }
     }
 }
