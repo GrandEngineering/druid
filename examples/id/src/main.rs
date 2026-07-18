@@ -1,22 +1,11 @@
-use druid::*;
-use rand::seq::SliceRandom;
+use druid::{Druid, DruidV7};
+
 fn main() {
-    let mut uids = Vec::new();
-    for _ in 0..1000 {
-        uids.push(Druid::default().to_hex());
-    }
-    let org = uids.clone();
-    let mut rng = rand::rng();
-    uids.shuffle(&mut rng);
-    // uids.sort_by(|a, b| {
-    //     let timestamp_a = &a[0..32];
-    //     let timestamp_b = &b[0..32];
-    //     let ts_a = u128::from_str_radix(timestamp_a, 32).unwrap_or(0);
-    //     let ts_b = u128::from_str_radix(timestamp_b, 32).unwrap_or(0);
-    //     ts_a.cmp(&ts_b)
-    // });
-    uids.sort();
-    // println!("{:#?}", org);
-    // println!("{:#?}", uids);
-    assert!(uids == org);
+    let id = Druid::new();
+    println!("Druid:     {id}");
+    println!("timestamp: {} ns", id.timestamp_nanos());
+
+    let uuid_v7 = DruidV7::new();
+    println!("UUIDv7:    {uuid_v7}");
+    println!("timestamp: {} ms", uuid_v7.timestamp_millis());
 }

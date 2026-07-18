@@ -1,40 +1,72 @@
-# 🧙‍♂️ Druid
+# 🧙 Druid
 
-A **blazingly fast**, **collision-resistant**, **sortable**, unique identifier generator written in Rust.
+[![CI](https://github.com/GrandEngineering/druid/actions/workflows/ci.yml/badge.svg)](https://github.com/GrandEngineering/druid/actions/workflows/ci.yml)
+[![Rust 1.85+](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
+[![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE.md)
 
-## 🔧 How It Works
+Fast, time-ordered identifier generation in Rust. Druid provides both a high-entropy custom format and RFC 9562-compatible UUIDv7 bytes.
 
-Druid IDs are 40 bytes in total, composed of four parts:
+## Quick start
 
-1. **Timestamp** (16 bytes): Stored in big-endian format for natural sortability.
-2. **Randomness** (23 bytes): Generated using a cryptographically secure pseudo-random number generator (CSPRNG).
-3. **Version** (1 byte): Reserved for versioning and future compatibility.
+Add the Git dependency:
 
-## 🎯 Collision Probability
+```toml
+[dependencies]
+druid = { git = "https://github.com/GrandEngineering/druid" }
+```
 
-While a theoretical chance of collision exists, it's *astronomically* low. Druid has around **2¹⁸⁴ unique IDs** for each nano-second.
+Generate, format, and parse an ID:
 
-To put that into perspective:
+```rust
+use druid::{Druid, DruidV7};
 
-> You would need to generate approximately **5.55 × 10²⁶ IDs per nanosecond** to reach a **1% chance of collision**.
+let id = Druid::new();
+println!("{id}"); // 80 lowercase hexadecimal characters
+assert_eq!(id, id.to_string().parse()?);
 
-That’s more IDs than grains of sand on Earth.
-## ⚡ Performance
+let uuid_v7 = DruidV7::new();
+assert_eq!(uuid_v7.as_bytes().len(), 16);
+# Ok::<(), druid::ParseDruidError>(())
+```
 
-| Metric             | **[DRUID]()**|  **[DRUID v7](https://www.rfc-editor.org/rfc/rfc9562.html#name-uuid-version-7)**       | **[CUID](https://github.com/mplanchard/cuid-rust)**        | **[UUIDv4](https://github.com/uuid-rs/uuid)**          |
-|--------------------|-----------|-----------|-----------------|-------------------|
-| **Mean**           | 45.789 ns | 42.366 ns | 3.4375 µs       | 46.160 ns         |
-| **Median**         | 45.684 ns | 42.239 ns | 3.4310 µs       | 46.046 ns         |
-| **Std Dev**        | 784.44 ps | 691.97 ps | 52.284 ns       | 771.28 ps         |
+`Default::default()` remains available for both types.
 
+## Formats
 
-**Benchmarked using:**
+### `Druid` — 40 bytes
 
-- UUIDv4
-- CUIDv2
-- Druid's UUIDv7
-- Intel Core i5-10400F
+| Bytes | Contents |
+|---|---|
+| `0..16` | Big-endian Unix timestamp in nanoseconds |
+| `16..39` | 184 random bits from the operating system RNG |
+| `39` | Format version (`0`) |
 
----
+### `DruidV7` — 16 bytes
 
-Feel free to contribute, raise issues, or star the repo if you find it useful!
+`DruidV7` follows the UUIDv7 byte layout from [RFC 9562](https://www.rfc-editor.org/rfc/rfc9562.html#name-uuid-version-7), including its 48-bit millisecond timestamp, version, and variant bits.
+
+Both types implement `Copy`, `Display`, `FromStr`, `Ord`, `Hash`, and `AsRef<[u8]>`. Raw bytes are available through `as_bytes()` and validated by `from_bytes()`.
+
+## Ordering and uniqueness
+
+The timestamp prefix makes IDs naturally sortable across **different clock ticks**. IDs generated in the same nanosecond (`Druid`) or millisecond (`DruidV7`) use random data for the remaining order and therefore do not necessarily preserve generation order. System clock rollback can also affect ordering.
+
+A `Druid` has 184 random bits per timestamp value. Using the birthday bound, approximately `7.0 × 10²⁶` IDs generated in one timestamp bucket produce a 1% collision probability. This is a probabilistic guarantee, not a substitute for a database uniqueness constraint when duplicates must be impossible.
+
+These identifiers expose creation time and are not intended to be secrets.
+
+## Development
+
+```sh
+cargo fmt --check
+cargo clippy --all-targets --all-features -- -D warnings
+cargo test --all-features
+cargo doc --no-deps
+cargo bench
+```
+
+The benchmark suite compares individual and parallel batches of Druid, UUIDv7, CUID2, and UUIDv4 generation. Results depend on hardware, Rust version, and dependency versions; run it locally rather than relying on stale published numbers.
+
+## License
+
+Licensed under [GPL-3.0-only](LICENSE.md).

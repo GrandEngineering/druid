@@ -2,9 +2,17 @@
 name = "druid"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
+description = "Fast, time-ordered 40-byte and UUIDv7 identifier generation"
+repository = "https://github.com/GrandEngineering/druid"
+readme = "README.md"
+license = "GPL-3.0-only"
+keywords = ["identifier", "uuid", "uuidv7", "sortable", "distributed"]
+categories = ["data-structures", "encoding"]
 
 [lib]
 bench = false
+
 [dependencies]
 rand = "0.10.1"
 
@@ -12,10 +20,7 @@ rand = "0.10.1"
 criterion = { version = "0.8.2", features = ["html_reports", "rayon"] }
 cuid2 = "0.1.4"
 rayon = "1.12.0"
-[dependencies.uuid]
-version = "1.23.0"
-# Lets you generate random UUIDs
-features = ["v4"]
+uuid = { version = "1.23.0", features = ["v4"] }
 
 [[bench]]
 name = "druid"
